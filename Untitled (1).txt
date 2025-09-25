@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StarGAME - Joki Profesional Mobile Legends & Free Fire</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset CSS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Variabel CSS */
+        :root {
+            --primary-color: #1a1a2e;
+            --secondary-color: #16213e;
+            --accent-color: #0f3460;
+            --gold-color: #e6b325;
+            --ml-color: #ff6b6b;
+            --ff-color: #4ecdc4;
+            --wa-color: #25D366;
+            --light-bg: #f8f9fa;
+            --dark-text: #222831;
+            --light-text: #eeeeee;
+            --gradient: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        /* Global Styles */
+        body {
+            background-color: var(--light-bg);
+            color: var(--dark-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 2.5rem;
+            position: relative;
+            color: var(--primary-color);
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 5px;
+            background: var(--gradient);
+            margin: 15px auto;
+            border-radius: 5px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            text-align: center;
+            font-size: 1rem;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: var(--transition);
+            z-index: -1;
+        }
+
+        .btn:hover::before {
+            width: 100%;
+        }
+
+        .btn-primary {
+            background: var(--gradient);
+            color: var(--light-text);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+        }
+
+        .btn-ml {
+            background-color: var(--ml-color);
+            color: var(--light-text);
+        }
+
+        .btn-ff {
+            background-color: var(--ff-color);
+            color: var(--light-text);
+        }
+
+        .btn-gold {
+            background-color: var(--gold-color);
+            color: var(--light-text);
+        }
+
+        .btn-wa {
+            background-color: var(--wa-color);
+            color: var(--light-text);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            margin-top: 15px;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Header Styles */
+        header {
+            background: var(--gradient);
+            color: var(--light-text);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2.2rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            color: var(--gold-color);
+            margin-right: 10px;
+            font-size: 2.5rem;
+        }
+
+        .logo span {
+            color: var(--gold-color);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 25px;
+            position: relative;
+        }
+
+        nav ul li a {
+            color: var(--light-text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 8px 15px;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+        }
+
+        nav ul li a i {
+            margin-right: 8px;
+        }
+
+        nav ul li a:hover, nav ul li a.active {
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .joki-register-btn {
+            background-color: var(--gold-color);
+            color: var(--primary-color);
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+        }
+
+        .joki-register-btn:hover {
+            background-color: #ffcc00;
+            transform: translateY(-3px);
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--light-text);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: var(--gradient);
+            color: var(--light-text);
+            padding: 150px 0 100px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            opacity: 0.15;
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        /* Game Tabs */
+        .game-tabs-section {
+            background-color: white;
+            padding: 40px 0;
+        }
+
+        .game-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 0;
+            flex-wrap: wrap;
+            background: white;
+            padding: 0;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .game-tab {
+            padding: 15px 30px;
+            background: white;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            flex: 1;
+            text-align: center;
+            border-radius: 0;
+        }
+
+        .game-tab:first-child {
+            border-radius: 15px 0 0 15px;
+        }
+
+        .game-tab:last-child {
+            border-radius: 0 15px 15px 0;
+        }
+
+        .game-tab.active {
+            background: var(--gradient);
+            color: white;
+        }
+
+        /* Game Sections */
+        .game-section {
+            display: none;
+        }
+
+        .game-section.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .game-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .game-card {
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .game-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .game-card-header {
+            padding: 25px;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ml-card .game-card-header {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ff8e8e 100%);
+        }
+
+        .ff-card .game-card-header {
+            background: linear-gradient(135deg, #4ecdc4 0%, #6de0d8 100%);
+        }
+
+        .game-card-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--gold-color);
+            color: var(--primary-color);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .game-card-body {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .game-card h3 {
+            margin-bottom: 15px;
+            font-size: 1.6rem;
+            text-align: center;
+        }
+
+        .contact-info {
+            text-align: center;
+            margin: 30px 0;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 10px;
+        }
+
+        .contact-info h3 {
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        .contact-info p {
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary-color);
+            color: var(--light-text);
+            padding: 40px 0 20px;
+            text-align: center;
+        }
+
+        .footer-bottom {
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .game-tabs {
+                flex-direction: column;
+                max-width: 300px;
+            }
+            
+            .game-tab {
+                max-width: 100%;
+                margin: 0;
+                border-radius: 0;
+            }
+            
+            .game-tab:first-child {
+                border-radius: 15px 15px 0 0;
+            }
+            
+            .game-tab:last-child {
+                border-radius: 0 0 15px 15px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            nav {
+                width: 100%;
+                margin-top: 15px;
+                display: none;
+            }
+
+            nav.active {
+                display: block;
+            }
+
+            nav ul {
+                flex-direction: column;
+            }
+
+            nav ul li {
+                margin: 10px 0;
+            }
+
+            .mobile-menu {
+                display: block;
+                position: absolute;
+                right: 20px;
+                top: 20px;
+            }
+
+            .hero {
+                padding: 120px 0 80px;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .game-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .contact-info {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-star"></i>
+                Star<span>GAME</span>
+            </div>
+            <div class="mobile-menu">☰</div>
+            <nav>
+                <ul>
+                    <li><a href="#" class="nav-link active" data-target="home-section"><i class="fas fa-home"></i> Beranda</a></li>
+                    <li><a href="#" class="nav-link" data-target="ml-section"><i class="fas fa-crown"></i> ML</a></li>
+                    <li><a href="#" class="nav-link" data-target="ff-section"><i class="fas fa-fire"></i> FF</a></li>
+                    <li><a href="https://wa.me/6283121606904?text=Halo,%20saya%20ingin%20daftar%20menjadi%20joki%20di%20StarGAME" class="joki-register-btn" target="_blank"><i class="fas fa-user-plus"></i> Daftar Joki</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home-section">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Joki Game Profesional untuk ML & FF</h1>
+                <p>Tingkatkan rank game Anda dengan bantuan joki profesional StarGAME. Langsung hubungi via WhatsApp untuk konsultasi dan pemesanan!</p>
+                <div class="hero-buttons">
+                    <a href="#" class="btn btn-ml" data-target="ml-section"><i class="fas fa-crown"></i> Joki ML</a>
+                    <a href="#" class="btn btn-ff" data-target="ff-section"><i class="fas fa-fire"></i> Joki FF</a>
+                    <a href="https://wa.me/6283121606904?text=Halo,%20saya%20ingin%20daftar%20menjadi%20joki%20di%20StarGAME" class="btn btn-gold" target="_blank"><i class="fas fa-user-plus"></i> Daftar Jadi Joki</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Game Tabs -->
+    <section class="game-tabs-section">
+        <div class="container">
+            <div class="game-tabs">
+                <button class="game-tab active" data-target="ml-section">ML</button>
+                <button class="game-tab" data-target="ff-section">FF</button>
+                <button class="game-tab" id="contact-tab">Pesan Via WA</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mobile Legends Section -->
+    <section id="ml-section" class="game-section active">
+        <div class="container">
+            <h2 class="section-title">Joki Mobile Legends</h2>
+            <p style="text-align: center; margin-bottom: 40px; max-width: 800px; margin-left: auto; margin-right: auto;">
+                Hubungi kami via WhatsApp untuk joki Mobile Legends profesional. Kami siap membantu meningkatkan rank game Anda!
+            </p>
+            
+            <div class="contact-info">
+                <h3>Pesan Via WhatsApp</h3>
+                <p>Hubungi kami langsung untuk konsultasi dan pemesanan joki Mobile Legends</p>
+                <a href="https://wa.me/6283121606904?text=Halo,%20saya%20ingin%20joki%20Mobile%20Legends" class="btn btn-wa" target="_blank">
+                    <i class="fab fa-whatsapp"></i> Pesan Via WA 083121606904
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Free Fire Section -->
+    <section id="ff-section" class="game-section">
+        <div class="container">
+            <h2 class="section-title">Joki Free Fire</h2>
+            <p style="text-align: center; margin-bottom: 40px; max-width: 800px; margin-left: auto; margin-right: auto;">
+                Hubungi kami via WhatsApp untuk joki Free Fire profesional. Kami siap membantu meningkatkan rank game Anda!
+            </p>
+            
+            <div class="contact-info">
+                <h3>Pesan Via WhatsApp</h3>
+                <p>Hubungi kami langsung untuk konsultasi dan pemesanan joki Free Fire</p>
+                <a href="https://wa.me/6283121606904?text=Halo,%20saya%20ingin%20joki%20Free%20Fire" class="btn btn-wa" target="_blank">
+                    <i class="fab fa-whatsapp"></i> Pesan Via WA 083121606904
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact-section" class="game-section">
+        <div class="container">
+            <h2 class="section-title">Hubungi Kami</h2>
+            
+            <div class="contact-info">
+                <h3>Pesan Via WhatsApp</h3>
+                <p>Hubungi kami langsung untuk informasi lebih lanjut tentang layanan joki game</p>
+                <a href="https://wa.me/6283121606904?text=Halo,%20saya%20ingin%20bertanya%20tentang%20layanan%20joki%20StarGAME" class="btn btn-wa" target="_blank">
+                    <i class="fab fa-whatsapp"></i> Pesan Via WA 083121606904
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2023 StarGAME. Semua Hak Dilindungi.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navigation functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu toggle
+            const mobileMenu = document.querySelector('.mobile-menu');
+            const nav = document.querySelector('nav');
+            
+            mobileMenu.addEventListener('click', function() {
+                nav.classList.toggle('active');
+            });
+            
+            // Navigation links
+            const navLinks = document.querySelectorAll('.nav-link, .btn-ml, .btn-ff, .game-tab');
+            const gameSections = document.querySelectorAll('.game-section');
+            const homeSection = document.getElementById('home-section');
+            const contactSection = document.getElementById('contact-section');
+            
+            // Set home section as active initially
+            document.querySelectorAll('.game-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            homeSection.classList.add('active');
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    // Skip prevention for external links (WhatsApp)
+                    if (this.href && this.href.includes('wa.me')) {
+                        return;
+                    }
+                    
+                    e.preventDefault();
+                    
+                    // Hide mobile menu after clicking a link
+                    if (window.innerWidth <= 768) {
+                        nav.classList.remove('active');
+                    }
+                    
+                    // Get target section from data attribute or link text
+                    let targetId;
+                    if (this.dataset.target) {
+                        targetId = this.dataset.target;
+                    } else if (this.classList.contains('btn-ml')) {
+                        targetId = 'ml-section';
+                    } else if (this.classList.contains('btn-ff')) {
+                        targetId = 'ff-section';
+                    } else if (this.id === 'contact-tab') {
+                        targetId = 'contact-section';
+                    }
+                    
+                    // Update active nav link
+                    document.querySelectorAll('.nav-link').forEach(navLink => {
+                        navLink.classList.remove('active');
+                    });
+                    
+                    if (this.classList.contains('nav-link')) {
+                        this.classList.add('active');
+                    } else {
+                        // Find and activate the corresponding nav link
+                        const correspondingNavLink = document.querySelector(`.nav-link[data-target="${targetId}"]`);
+                        if (correspondingNavLink) {
+                            correspondingNavLink.classList.add('active');
+                        }
+                    }
+                    
+                    // Update active tab
+                    if (this.classList.contains('game-tab')) {
+                        document.querySelectorAll('.game-tab').forEach(tab => {
+                            tab.classList.remove('active');
+                        });
+                        this.classList.add('active');
+                    }
+                    
+                    // Show target section and hide others
+                    gameSections.forEach(section => {
+                        section.classList.remove('active');
+                    });
+                    
+                    if (targetId === 'home-section') {
+                        homeSection.classList.add('active');
+                    } else {
+                        document.getElementById(targetId).classList.add('active');
+                    }
+                    
+                    // Scroll to the section
+                    if (targetId === 'home-section') {
+                        window.scrollTo({
+                            top: 0,
+                            behavior: 'smooth'
+                        });
+                    } else {
+                        document.getElementById(targetId).scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
